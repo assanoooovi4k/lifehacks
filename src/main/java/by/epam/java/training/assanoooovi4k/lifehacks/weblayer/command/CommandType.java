@@ -8,7 +8,7 @@ import by.epam.java.training.assanoooovi4k.lifehacks.service.impl.UserServiceImp
 public enum     CommandType {
     START(new LifeHackServiceImpl()::findAllSubmittedLifeHacks),
     AUTHORIZATION(new UserServiceImpl()::signIn),
-//    CHANGE_LOCALE(new ApplicationServiceImpl()::changeLocale),
+    CHANGE_LOCALE(new UserServiceImpl()::changeLocale),
     REGISTER_USER(new UserServiceImpl()::createUser),
     GO_TO_LIFE_HACK_PAGE(new LifeHackServiceImpl()::goToLifeHackProfile),
     ADD_TO_FAVORITE(new LifeHackServiceImpl()::addLifeHackToFavorite),
@@ -33,7 +33,6 @@ public enum     CommandType {
     USERS_OFFERS(new LifeHackServiceImpl()::findOfferedLifeHacks),
     FIND_ALL_SUBMITTED_LIFE_HACKS(new LifeHackServiceImpl()::findAllSubmittedLifeHacks),
     CREATE_LIFE_HACK(new LifeHackServiceImpl()::createLifeHack),
-//    CHANGE_STATUS_LIFE_HACK(new AdminServiceImpl()::changeStatusLifeHack),
     OFFER_LIFE_HACK(new LifeHackServiceImpl()::offerLifeHack);
 
 

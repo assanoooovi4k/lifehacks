@@ -19,5 +19,6 @@ import java.security.NoSuchAlgorithmException;
 public interface UserService {
     CommandResult createUser(RequestContent requestContent) throws ServiceException;
     CommandResult signIn (RequestContent requestContent) throws ServiceException;
+    CommandResult changeLocale(RequestContent requestContent);
     CommandResult logout (RequestContent requestContent);
 }

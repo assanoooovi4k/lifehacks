@@ -9,8 +9,7 @@
 <html>
 <head>
     <%@ include file="../jspf/import.jspf"%>
-    <c:set var="pagePass" value="pages/adminPanel.jsp"/>
-    <title>Admin panel</title>
+    <title><fmt:message key="adminpanelpage.title"/></title>
 </head>
 <body>
 <div>
@@ -19,25 +18,25 @@
     </nav>
 </div>
 <div>
-    <p>Count of users: ${countOfUsers}</p>
-    <p>Count of active users: ${countOfActiveUsers}</p>
-    <p>Count of blocked users: ${countOfBlockedUsers}</p>
-    <p>Count of life hacks: ${countOfLifeHacks}</p>
-    <p>Count of offered life hacks: ${countOfOfferedLifeHacks}</p>
-    <p>Count of submitted life hacks: ${countOfSubmittedLifeHacks}</p>
-    <p>Count of rejected life hacks: ${countOfRejectedLifeHacks}</p>
+    <p><fmt:message key="adminpanelpage.countusers"/> ${countOfUsers}</p>
+    <p><fmt:message key="adminpanelpage.countactusers"/> ${countOfActiveUsers}</p>
+    <p><fmt:message key="adminpanelpage.countblockusers"/> ${countOfBlockedUsers}</p>
+    <p><fmt:message key="adminpanelpage.countlifehacks"/> ${countOfLifeHacks}</p>
+    <p><fmt:message key="adminpanelpage.countofflifehacks"/> ${countOfOfferedLifeHacks}</p>
+    <p><fmt:message key="adminpanelpage.countsublifehacks"/> ${countOfSubmittedLifeHacks}</p>
+    <p><fmt:message key="adminpanelpage.countrejlifehacks"/> ${countOfRejectedLifeHacks}</p>
     <form action="${pageContext.request.contextPath}/main" method="post" id="manage-users">
-        <button type="submit" class="btn btn-primary">Manage users</button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="adminpanelpage.manageusers"/></button>
         <input type="hidden" name="command" value="manage_users">
     </form>
 
     <form action="${pageContext.request.contextPath}/main" method="post" id="manage-life-hacks">
-        <button type="submit" class="btn btn-primary">Manage life hacks</button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="adminpanelpage.managelifehacks"/></button>
         <input type="hidden" name="command" value="manage_life_hacks">
     </form>
 
     <form action="${pageContext.request.contextPath}/main" method="post" id="users-offers">
-        <button type="submit" class="btn btn-primary">Users offers</button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="adminpanelpage.offers"/></button>
         <input type="hidden" name="command" value="users_offers">
     </form>
 </div>

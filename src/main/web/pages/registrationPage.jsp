@@ -2,12 +2,11 @@
 <html>
 <head>
     <%@ include file="jspf/import.jspf"%>
-    <title>Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration</title>
+    <title><fmt:message key="registrationpage.title"/></title>
 </head>
 <body>
 <div>
@@ -17,49 +16,49 @@
 </div>
 
 <div class="container">
-    <h1 align="center">Registration</h1>
+    <h1 align="center"><fmt:message key="registrationpage.title"/></h1>
     <div>
         <form id="registration-form" action="${pageContext.request.contextPath}/main" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username"><fmt:message key="registrationpage.username"/></label>
                 <span style="display: grid" id="error-username-span"></span>
                 <input type="text" class="form-control" id="username" name="username"
-                       placeholder="Enter username">
+                       placeholder=<fmt:message key="registrationpage.usernameplace"/>>
             </div>
             <div class="form-group">
-                <label for="first-name">First name</label>
+                <label for="first-name"><fmt:message key="registrationpage.firstname"/></label>
                 <span style="display: grid" id="error-first-name-span"></span>
                 <input type="text" class="form-control" id="first-name" name="first-name"
-                       placeholder="Enter first name">
+                       placeholder=<fmt:message key="registrationpage.firstnameplace"/>>
             </div>
             <div class="form-group">
-                <label for="second-name">Second name</label>
+                <label for="second-name"><fmt:message key="registrationpage.secondname"/></label>
                 <span style="display: grid" id="error-second-name-span"></span>
                 <input type="text" class="form-control" id="second-name" name="second-name"
-                       placeholder="Enter second name">
+                       placeholder=<fmt:message key="registrationpage.secondnameplace"/>>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email"><fmt:message key="registrationpage.email"/></label>
                 <span style="display: grid" id="error-email-span"></span>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+                <input type="text" class="form-control" id="email" name="email" placeholder=<fmt:message key="registrationpage.emailplace"/>>
             </div>
 
             <div class="form-group">
-                <label for="pass1">Password</label>
+                <label for="pass1"><fmt:message key="registrationpage.pass1"/></label>
                 <span style="display: grid" id="error-pass-span"></span>
-                <input type="password" class="form-control" id="pass1" name="pass1"  placeholder="Enter password">
+                <input type="password" class="form-control" id="pass1" name="pass1"  placeholder=<fmt:message key="registrationpage.pass1place"/>>
             </div>
 
             <div class="form-group">
-                <label for="pass2">Confirm password</label>
-                <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter password">
+                <label for="pass2"><fmt:message key="registrationpage.pass2"/></label>
+                <input type="password" class="form-control" id="pass2" name="pass2" placeholder=<fmt:message key="registrationpage.pass2place"/>>
             </div>
             <div>
                 <c:if test="${registrationError == 'true'}">
                     <b style="color: red">${registrationErrorMessage}</b>
                 </c:if>
             </div>
-            <button type="submit"  class="btn btn-primary">Submit</button>
+            <button type="submit"  class="btn btn-primary"><fmt:message key="registrationpage.submit"/></button>
             <input type="hidden" name="command" value="register_user">
             <input type="hidden" name="page" value="${pagePass}">
         </form>

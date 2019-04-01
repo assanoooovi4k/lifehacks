@@ -9,7 +9,7 @@
 <html>
 <head>
     <%@ include file="../jspf/import.jspf"%>
-    <title>FavoriteLifeHacks</title>
+    <title><fmt:message key="favoritelifehackspage.title"/></title>
 </head>
 <body>
 <div>
@@ -19,14 +19,14 @@
 </div>
 <div>
     <c:if test="${favoriteLifeHacks == null || fn:length(favoriteLifeHacks) == 0}">
-        No favorite life hacks
+        <fmt:message key="favoritelifehackspage.no"/>
     </c:if>
     <c:if test="${favoriteLifeHacks != null || fn:length(favoriteLifeHacks) != 0}">
         <c:forEach var="lifeHack" items="${favoriteLifeHacks}">
             <form action="${pageContext.request.contextPath}/main" method="post" id="offer-form">
                     ${lifeHack.name}<br>
                         <img style="height: 300px; width: 300px; object-fit: contain" src="data:image/jpeg;base64,${lifeHack.pictureEnc}" /><br>
-                <button type="submit"  class="btn btn-primary">Go to life hack page</button>
+                <button type="submit"  class="btn btn-primary"><fmt:message key="favoritelifehackspage.go"/></button>
                 <input type="hidden" name="command" value="go_to_life_hack_page">
                 <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
             </form>

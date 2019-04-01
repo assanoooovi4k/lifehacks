@@ -39,16 +39,6 @@
    FOREIGN KEY (life_hack_id) REFERENCES life_hack(life_hack_id)
  );
 
- CREATE TABLE  mark (
-   mark_id BIGINT(20) NOT NULL AUTO_INCREMENT,
-   user_id BIGINT NOT NULL,
-   life_hack_id BIGINT NOT NULL,
-   value TINYINT NOT NULL, #???
-
-   PRIMARY KEY (mark_id),
-   FOREIGN KEY (user_id) REFERENCES user(user_id),
-   FOREIGN KEY (life_hack_id) REFERENCES life_hack(life_hack_id)
- );
 
  CREATE TABLE favorite_life_hack (
    liked_life_hack_id BIGINT(20) NOT NULL AUTO_INCREMENT,

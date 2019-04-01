@@ -127,7 +127,7 @@ public class LifeHackDaoImpl implements LifeHackDao {
             preparedStatement.setString(3, lifeHack.getDescription());
             preparedStatement.setBytes(4, lifeHack.getPicture());
             preparedStatement.setLong(5, id);
-            preparedStatement.executeUpdate();//TODO update or query???
+            preparedStatement.executeUpdate();
 
             return true;
         } catch (SQLException e) {
@@ -343,7 +343,7 @@ public class LifeHackDaoImpl implements LifeHackDao {
             preparedStatement.setBytes(5, lifeHack.getPicture());
             preparedStatement.setLong(6, lifeHack.getDateOfPosting().atZone(ZoneId.systemDefault()).
                     toInstant().toEpochMilli());
-            preparedStatement.execute();//TODO update or query???
+            preparedStatement.execute();
 
             return true;
         } catch (SQLException e) {

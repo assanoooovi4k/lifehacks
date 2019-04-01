@@ -1,50 +1,50 @@
 
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks">Life hacks</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks"><fmt:message key="header.brand"/></a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks">Home</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks"><fmt:message key="header.home"/></a>
             </li>
             <c:if test="${role == 'USER' || role == 'ADMIN'}">
                 <li class="nav-item">
-                    <a  class="nav-link" href="${pageContext.request.contextPath}/pages/user/profilePage.jsp">My profile</a>
+                    <a  class="nav-link" href="${pageContext.request.contextPath}/pages/user/profilePage.jsp"><fmt:message key="header.profile"/></a>
                 </li>
             </c:if>
 
             <c:if test="${role == 'USER'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/user/offerLifeHackPage.jsp">Offer life hack</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/user/offerLifeHackPage.jsp"><fmt:message key="header.offer"/></a>
                 </li>
             </c:if>
 
             <c:if test="${role == 'ADMIN'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=go_to_admin_panel">Admin panel</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=go_to_admin_panel"><fmt:message key="header.apanel"/></a>
                 </li>
             </c:if>
 
             <c:if test="${role == 'ADMIN'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/admin/createLifeHackPage.jsp">Create life hack</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/admin/createLifeHackPage.jsp"><fmt:message key="header.create"/></a>
                 </li>
             </c:if>
 
 
             <c:if test="${role == 'GUEST'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/authorizationPage.jsp">Authorization</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/authorizationPage.jsp"><fmt:message key="header.auth"/></a>
                 </li>
             </c:if>
 
             <c:if test="${role == 'GUEST'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/registrationPage.jsp">Registration</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/registrationPage.jsp"><fmt:message key="header.reg"/></a>
                 </li>
             </c:if>
             <c:if test="${role == 'USER' || role == 'ADMIN'}">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=logout">Logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=logout"><fmt:message key="header.logout"/></a>
                 </li>
             </c:if>
 

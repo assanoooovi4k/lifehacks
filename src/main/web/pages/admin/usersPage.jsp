@@ -9,7 +9,7 @@
 <html>
 <head>
     <%@include  file="../jspf/import.jspf"%>
-    <title>Users list</title>
+    <title><fmt:message key="userspage.title"/></title>
 </head>
 <body>
 <div>
@@ -21,14 +21,14 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">User id</th>
-            <th scope="col">Status</th>
-            <th scope="col">Username</th>
-            <th scope="col">First name</th>
-            <th scope="col">Second name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Block/Unlock</th>
-            <th scope="col">Make admin</th>
+            <th scope="col"><fmt:message key="userspage.userid"/></th>
+            <th scope="col"><fmt:message key="userspage.status"/></th>
+            <th scope="col"><fmt:message key="userspage.username"/></th>
+            <th scope="col"><fmt:message key="userspage.firstname"/></th>
+            <th scope="col"><fmt:message key="userspage.secondname"/></th>
+            <th scope="col"><fmt:message key="userspage.email"/></th>
+            <th scope="col"><fmt:message key="userspage.blockunlock"/></th>
+            <th scope="col"><fmt:message key="userspage.makeadmin"/></th>
         </tr>
         </thead>
         <tbody>
@@ -38,10 +38,10 @@
                 <td>${user.userId}</td>
                 <td>
                     <c:if test="${!user.blocked}">
-                        Not blocked
+                        <fmt:message key="userspage.blocked"/>
                     </c:if>
                     <c:if test="${user.blocked}">
-                        Blocked
+                        <fmt:message key="userspage.notblocked"/>
                     </c:if>
                 </td>
                 <td>${user.username}</td>
@@ -51,7 +51,7 @@
                 <td>
                     <c:if test="${!user.blocked}">
                         <form action="${pageContext.request.contextPath}/main" method="post" id="block">
-                            <button type="submit"  class="btn btn-primary">Block user</button>
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="userspage.block"/></button>
                             <input type="hidden" name="command" value="block_user">
                             <input type="hidden" name="userId" value="${user.userId}">
                         </form>
@@ -59,7 +59,7 @@
 
                     <c:if test="${user.blocked}">
                         <form action="${pageContext.request.contextPath}/main" method="post" id="unlock">
-                            <button type="submit"  class="btn btn-primary">Unlock user</button>
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="userspage.unlock"/></button>
                             <input type="hidden" name="command" value="unlock_user">
                             <input type="hidden" name="userId" value="${user.userId}">
                         </form>
@@ -68,7 +68,7 @@
 
                 <td>
                     <form action="${pageContext.request.contextPath}/main" method="post" id="make-admin">
-                        <button type="submit"  class="btn btn-primary">Make admin</button>
+                        <button type="submit"  class="btn btn-primary"><fmt:message key="startpage.title"/></button>
                         <input type="hidden" name="command" value="make_admin">
                         <input type="hidden" name="userId" value="${user.userId}">
                     </form>

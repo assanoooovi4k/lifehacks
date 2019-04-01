@@ -16,6 +16,7 @@ import by.epam.java.training.assanoooovi4k.lifehacks.model.entityenum.UserRole;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 
 public class UserServiceImpl implements UserService {
@@ -85,13 +86,23 @@ public class UserServiceImpl implements UserService {
 
         }
 
-        //TODO
         requestContent.insertSessionAttribute(Constant.SIGN_IN_ERROR,"true");
         requestContent.insertSessionAttribute(Constant.REDIRECT_PATH, PagePath.AUTHORIZATION_PAGE);
         return new CommandResult(ResponseType.FORWARD, PagePath.PRG_PAGE);
 
     }
 
+    @Override
+    public CommandResult changeLocale(RequestContent requestContent) {
+        if (requestContent.getSessionAttribute(Constant.LOCALE).toString().equals("ru_RU")) {
+            requestContent.insertSessionAttribute(Constant.LOCALE, new Locale(Constant.EN_LOCALE_LANG, Constant.EN_LOCALE_COUNTRY));
+        } else {
+            requestContent.insertSessionAttribute(Constant.LOCALE, new Locale(Constant.RU_LOCALE_LANG, Constant.RU_LOCALE_COUNTRY));
+        }
+
+
+        return new CommandResult(ResponseType.FORWARD, PagePath.START_PAGE);
+    }
 
     @Override
     public CommandResult logout(RequestContent requestContent) {

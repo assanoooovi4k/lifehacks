@@ -9,7 +9,7 @@
 <html>
 <head>
     <%@ include file="jspf/import.jspf"%>
-    <title>Life hack</title>
+    <title><fmt:message key="lifehackpage.title"/></title>
 </head>
 <body>
 <div>
@@ -23,13 +23,13 @@
             <div class="card-body">
                 <h5 class="card-title">
                     <strong>
-                        Name: ${lifeHack.name}<br>
-                        Username: ${lifeHack.username}<br>
-                        Category: ${lifeHack.lifeHackCategory}<br>
-                        Description:<br>
+                        <fmt:message key="lifehackpage.name"/> ${lifeHack.name}<br>
+                        <fmt:message key="lifehackpage.username"/> ${lifeHack.username}<br>
+                        <fmt:message key="lifehackpage.category"/> ${lifeHack.lifeHackCategory}<br>
+                        <fmt:message key="lifehackpage.description"/><br>
                         ${lifeHack.description}<br>
                         <img style="width: 100%" src="data:image/jpeg;base64,${lifeHack.pictureEnc}" /><br>
-                        <p class="card-text">Date and time of post:<br>
+                        <p class="card-text"><fmt:message key="lifehackpage.date"/><br>
                             ${lifeHack.dateOfPosting}<br></p>
                     </strong>
                 </h5>
@@ -37,20 +37,20 @@
             </div>
             <div class="card-footer">
                 <c:if test="${role == 'GUEST'}">
-                    <b>Please log in to see and add comments</b>
+                        <b><fmt:message key="lifehackpage.notauth"/></b>
                 </c:if>
 
                 <c:if test="${role == 'ADMIN' || role == 'USER'}">
                     <c:if test="${isAdded == 'notAdded'}">
                         <form action="${pageContext.request.contextPath}/main" method="post" id="add-to-favorite">
-                            <button type="submit"  class="btn btn-primary">Add to favorite</button>
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="lifehackpage.addtofav"/></button>
                             <input type="hidden" name="command" value="add_to_favorite">
                             <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                         </form>
                     </c:if>
                     <c:if test="${isAdded == 'added'}">
                         <form action="${pageContext.request.contextPath}/main" method="post" id="delete-from-favorite">
-                            <button type="submit"  class="btn btn-primary">Delete from favorite</button>
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="lifehackpage.delete"/></button>
                             <input type="hidden" name="command" value="delete_from_favorite">
                             <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                         </form>
@@ -62,38 +62,38 @@
 
                     </div>
                     <form action="${pageContext.request.contextPath}/main" method="post" id="add-comment">
-                        <b>Input comment:</b>
+                        <b><fmt:message key="lifehackpage.inputcomment"/></b>
                         <textarea name="comment" class="form-control"></textarea>
-                        <button type="submit" class="btn btn-primary">Add comment</button>
+                        <button type="submit" class="btn btn-primary"><fmt:message key="lifehackpage.addcomment"/></button>
                         <input type="hidden" name="command" value="add_comment">
                         <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                     </form>
                     <c:if test="${commentsStatus == 'notShowed'}">
                         <form action="${pageContext.request.contextPath}/main" method="post" id="show-comments">
-                            <button type="submit"  class="btn btn-primary">Show comments</button>
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="lifehackpage.showcomments"/></button>
                             <input type="hidden" name="command" value="show_comments">
                             <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                         </form>
 
                     </c:if>
                     <c:if test="${commentsStatus == 'showed'}">
-                        <form action="${pageContext.request.contextPath}/main" method="post" id="show-comments">
-                            <button type="submit"  class="btn btn-primary">Hide comments</button>
+                        <form action="${pageContext.request.contextPath}/main" method="post" id="hide-comments">
+                            <button type="submit"  class="btn btn-primary"><fmt:message key="lifehackpage.hidecomments"/></button>
                             <input type="hidden" name="command" value="hide_comments">
                             <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                         </form>
                         <c:if test="${comments == null || fn:length(comments) == 0}">
-                            No comments
+                            <fmt:message key="lifehackpage.nocomments"/>
                         </c:if>
                         <c:if test="${comments != null || fn:length(comments) != 0}">
                             <c:forEach var="comment" items="${comments}">
                                 <form action="${pageContext.request.contextPath}/main" method="post" id="offer-form">
-                                        User: ${comment.username}<br>
-                                        Role: ${comment.userRole}<br>
+                                    <fmt:message key="lifehackpage.comuser"/>: ${comment.username}<br>
+                                    <fmt:message key="lifehackpage.comrole"/>: ${comment.userRole}<br>
                                         ${comment.description}<br>
-                                        Date: ${comment.dateOfComment}<br>
+                                    <fmt:message key="lifehackpage.comdate"/>: ${comment.dateOfComment}<br>
                                     <c:if test="${role == 'ADMIN' || comment.username == user.username}">
-                                        <button type="submit"  class="btn btn-primary">Delete comment</button>
+                                        <button type="submit"  class="btn btn-primary"><fmt:message key="lifehackpage.deletecomment"/></button>
                                         <input type="hidden" name="command" value="delete_comment">
                                         <input type="hidden" name="lifeHackId" value="${lifeHack.lifeHackId}">
                                         <input type="hidden" name="commentId" value="${comment.commentId}">

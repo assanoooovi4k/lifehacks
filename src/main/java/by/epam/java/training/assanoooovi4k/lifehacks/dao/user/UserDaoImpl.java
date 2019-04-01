@@ -62,7 +62,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findById(Long id) throws DaoException {//TODO
+    public User findById(Long id) throws DaoException {
         ProxyConnection proxyConnection = null;
         Statement statement = null;
         ResultSet resultSet;
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
         try {
             proxyConnection = ConnectionPool.getInstance().getConnection();
             statement = proxyConnection.createStatement();
-            resultSet = statement.executeQuery(String.format(SQL_SELECT_USER_BY_ID, id));//TODO result set close???
+            resultSet = statement.executeQuery(String.format(SQL_SELECT_USER_BY_ID, id));
 
             if (resultSet.next()) {
                 return createEntity(resultSet);
@@ -335,7 +335,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean create(User user, String pass) throws DaoException {//TODO
+    public boolean create(User user, String pass) throws DaoException {
         ProxyConnection proxyConnection = null;
         PreparedStatement preparedStatement = null;
 

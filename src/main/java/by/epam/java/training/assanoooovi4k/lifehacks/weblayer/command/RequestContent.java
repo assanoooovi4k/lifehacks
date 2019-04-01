@@ -67,7 +67,6 @@ public class RequestContent {
     public void insertSessionAttribute (String name, Object attr){
         if (request.getSession(false) != null) {
             request.getSession(false).setAttribute(name, attr);
-            System.out.println(request.getSession(false).getAttribute(name) + " " + name);
         }
     }
 

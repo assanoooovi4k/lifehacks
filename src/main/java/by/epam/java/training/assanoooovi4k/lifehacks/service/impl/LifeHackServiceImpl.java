@@ -363,23 +363,6 @@ public class LifeHackServiceImpl implements LifeHackService {
         return new CommandResult(ResponseType.FORWARD, PagePath.PRG_PAGE);
     }
 
-    //TODO
-//    public CommandResult changeStatusLifeHack(RequestContent requestContent) {
-//        LifeHackDaoImpl lifeHackDao = LifeHackDaoImpl.getInstance();
-//        Long id =  Long.parseLong(requestContent.getRequestParameter("lifeHackId"));
-//        try {
-//            if (requestContent.getRequestParameter("submit") != null) {
-//                lifeHackDao.submit(id);
-//            }
-//            if (requestContent.getRequestParameter("reject") != null) {
-//                lifeHackDao.reject(id);
-//            }
-//        } catch (DaoException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return findOfferedLifeHacks(requestContent);
-//    }
 
     private boolean validateNameAndDescription(RequestContent requestContent, String constant) throws ServiceException {
         String name = requestContent.getRequestParameter("name");

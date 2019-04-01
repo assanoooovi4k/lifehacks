@@ -58,27 +58,6 @@ public class CommentServiceImpl implements CommentService {
         return new CommandResult(ResponseType.FORWARD, PagePath.PRG_PAGE);
     }
 
-//    public CommandResult getListOfComments(RequestContent requestContent) {
-//        Long lifeHackId = null;
-//        if (requestContent.getRequestParameter("lifeHackId") != null) {
-//
-//            lifeHackId  =  Long.parseLong(requestContent.getRequestParameter("lifeHackId"));
-//        }
-//
-//        CommentDaoImpl commentDao = CommentDaoImpl.getInstance();
-//        try {
-//            List<Comment> comments = commentDao.findByLifeHackId(lifeHackId);
-//            requestContent.insertSessionAttribute(Constant.COMMENTS, comments);
-//        } catch (DaoException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        requestContent.insertSessionAttribute(Constant.REDIRECT_PATH, PagePath.INDEX);
-//        return new CommandResult(ResponseType.FORWARD, PagePath.PRG_PAGE);
-//
-//    }
-
     @Override
     public CommandResult showComments(RequestContent requestContent) {
         requestContent.insertSessionAttribute(Constant.COMMENTS_STATUS, "showed");
