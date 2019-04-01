@@ -1,0 +1,53 @@
+
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks">Life hacks</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/main?command=find_all_submitted_life_hacks">Home</a>
+            </li>
+            <c:if test="${role == 'USER' || role == 'ADMIN'}">
+                <li class="nav-item">
+                    <a  class="nav-link" href="${pageContext.request.contextPath}/pages/user/profilePage.jsp">My profile</a>
+                </li>
+            </c:if>
+
+            <c:if test="${role == 'USER'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/user/offerLifeHackPage.jsp">Offer life hack</a>
+                </li>
+            </c:if>
+
+            <c:if test="${role == 'ADMIN'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=go_to_admin_panel">Admin panel</a>
+                </li>
+            </c:if>
+
+            <c:if test="${role == 'ADMIN'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/admin/createLifeHackPage.jsp">Create life hack</a>
+                </li>
+            </c:if>
+
+
+            <c:if test="${role == 'GUEST'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/authorizationPage.jsp">Authorization</a>
+                </li>
+            </c:if>
+
+            <c:if test="${role == 'GUEST'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/pages/registrationPage.jsp">Registration</a>
+                </li>
+            </c:if>
+            <c:if test="${role == 'USER' || role == 'ADMIN'}">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/main?command=logout">Logout</a>
+                </li>
+            </c:if>
+
+        </ul>
+
+    </div>

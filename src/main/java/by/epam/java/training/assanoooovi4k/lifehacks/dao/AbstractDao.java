@@ -1,71 +1,78 @@
 package by.epam.java.training.assanoooovi4k.lifehacks.dao;
 
-import by.epam.java.training.assanoooovi4k.lifehacks.WrapperConnector;
+import by.epam.java.training.assanoooovi4k.lifehacks.dao.connection.ProxyConnection;
+import by.epam.java.training.assanoooovi4k.lifehacks.exception.DaoException;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public abstract class AbstractDao<T> {
-    private static final Logger LOGGER = Logger.getLogger(AbstractDao.class);
+public interface AbstractDao<T> {
+    final static Logger LOGGER = LogManager.getLogger(AbstractDao.class);
 
-    protected WrapperConnector connector;
+    boolean create(T t) throws DaoException;
+    List<T> findAll() throws DaoException;
+    T findById(Long id) throws DaoException;
+    boolean deleteById(Long id) throws DaoException;
+    boolean updateById(Long id, T t) throws DaoException;
 
-    public abstract List<T> findAll();
-    public abstract T findById(Long id);
-    public abstract boolean deleteById(Long id);
-    public abstract boolean delete(T entity);
-    public abstract boolean create(T entity);
-    public abstract T update(T entity);
+    T createEntity(ResultSet resultSet) throws DaoException;
 
-    List<T> createList(ResultSet resultSet){//gen
-        List<T> list = new ArrayList<>();
-        try {
-            while (resultSet.next()){
-                list.add(createEntity(resultSet));
+
+
+    default void closeStatement(Statement statement) {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                LOGGER.log(Level.ERROR, "Wrong statement", e);
             }
-            return list;
-        }catch (Exception e){
-            e.printStackTrace();
         }
-        return null;
+        else {
+            LOGGER.log(Level.ERROR, "Statement is null");
+        }
     }
 
-    protected abstract T createEntity(ResultSet resultSet) throws SQLException;
-
-
-    public void closeConnection() {
-        connector.closeConnection();
+    default void closeConnection(ProxyConnection proxyConnection) {
+        if (proxyConnection != null) {
+            try {
+                proxyConnection.close();
+            } catch (SQLException e) {
+                LOGGER.log(Level.ERROR, "Wrong connection", e);
+            }
+        }
+        else {
+            LOGGER.log(Level.ERROR, "Connection is null");
+        }
     }
 
-    public void closeStatement(Statement statement) {
-        connector.closeStatement(statement);
+    default void closeResultSet(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.log(Level.ERROR, "Wrong result set", e);
+            }
+        }
+        else {
+            LOGGER.log(Level.ERROR, "Result set is null");
+        }
     }
-//    void executeQuery(String sql) {
-//        try {
-//            .execute(sql);
-//            LOGGER.debug("SQL query: " + sql);
-//            System.out.println("SQL query: " + sql);
-//        } catch (SQLException e) {
-//            LOGGER.warn("An error occurred for sql query: " + sql);
-//            LOGGER.error(e);
-//        }
-//    }
-//
-//    ResultSet executeQueryWithResult(String sql) {
-//        ResultSet resultSet = null;
-//        try {
-//            resultSet = connection.createStatement().executeQuery(sql);
-//            LOGGER.debug("Sql query: " + sql);
-//            System.out.println("Sql query: " + sql);
-//        } catch (SQLException e) {
-//            LOGGER.warn("An error occurred for sql query: " + sql);
-//            LOGGER.error(e);
-//        }
-//        return resultSet;
-//    }
 
+
+    default List<T> createList(ResultSet resultSet) throws DaoException, SQLException {
+        List<T> list = new ArrayList<>();
+        while (resultSet.next()){
+            list.add(createEntity(resultSet));
+        }
+        return list;
+    }
 }
